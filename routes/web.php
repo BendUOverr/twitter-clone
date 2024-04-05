@@ -17,5 +17,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [DashboardController::class , 'index'])->name('dashboard');
-Route::post('/idea', [IdeaController::class , 'store'])->name('idea.create');
+Route::post('/ideas', [IdeaController::class , 'store'])->name('ideas.store');
+Route::delete('/ideas/{id}', [IdeaController::class , 'destroy'])->name('ideas.destroy');
 
