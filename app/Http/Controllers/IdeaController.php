@@ -14,13 +14,11 @@ class IdeaController extends Controller
     }
     public function store()
     {
-        request()->validate([
+        $validated = request()->validate([
             'content' => 'required|min:1|max:240'
         ]);
 
-        $idea = Idea::create([
-            'content' => request()->get('content', ''),
-        ]);
+        $idea = Idea::create($validated);
         return redirect()->route('ideas.index')->with('success', 'Idea posted successfully !');
     }
 
@@ -38,14 +36,11 @@ class IdeaController extends Controller
 public function update(Request $request, $id)
 {
     $idea = Idea::findOrFail($id);
-    $request->validate([
+    $validated = $request->validate([
             'content' => 'required|min:1|max:240',
         ]);
 
-        $idea -> update([
-        'content' => $request->content,
-
-        ]);
+        $idea -> update($validated);
 
         return redirect()->route('ideas.index')->with('success', 'Idea updated successfully!');
 }
