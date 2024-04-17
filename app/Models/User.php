@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'bio',
+        'image',
         'email',
         'password',
     ];
@@ -44,5 +46,16 @@ class User extends Authenticatable
 
     public function ideas(){
         return $this->hasMany(Idea::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getImageURL(){
+        if($this->image){
+            return url('storage/'. $this->image);
+        }
+        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
     }
 }
