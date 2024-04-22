@@ -30,7 +30,7 @@ class IdeaController extends Controller
             abort(404);
               }
         $idea->delete();
-        return redirect()->route('dashboard')->with('success', 'Idea deleted successfully !');
+        return redirect()->route('ideas.index')->with('success', 'Idea deleted successfully !');
     }
     public function edit($id)
 {

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -40,6 +41,14 @@ Route::post('/logout', [AuthController::class , 'logout'])->name('logout');
 
 Route::resource('users', UserController::class)->only('show','edit','update')->middleware('auth');
 Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
+
+Route::post('ideas/{id}/like',[IdeaLikeController::class, 'like'])->middleware('auth')->name('ideas.like');
+Route::post('ideas/{id}/unlike',[IdeaLikeController::class, 'unlike'])->middleware('auth')->name('ideas.unlike');
+
+
+Route::get('/terms', function (){
+ return view('terms');
+})->name('terms');
 
 
 

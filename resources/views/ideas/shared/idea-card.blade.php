@@ -2,10 +2,11 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                    src="{{ $idea->user->getImageURL() }}" alt="{{ $idea->user->name }}">
+                <img style="width:50px" class="me-2 avatar-sm rounded-circle" src="{{ $idea->user->getImageURL() }}"
+                    alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="card-title mb-0"><a href="{{ route('users.show', $idea->user->id) }}"> {{ $idea->user->name }}
+                    <h5 class="card-title mb-0"><a href="{{ route('users.show', $idea->user->id) }}">
+                            {{ $idea->user->name }}
                         </a></h5>
                 </div>
             </div>
@@ -13,9 +14,13 @@
                 <form action="{{ route('ideas.destroy', $idea->id) }}" method="POST">
                     @csrf
                     @method('delete')
-                    <a href="{{ url('ideas/edit/' . $idea->id) }}">Edit</a>
-                    <a href="{{ url('ideas/' . $idea->id) }}">View</a>
-                    <button class="btn btn-danger btn-sm">X</button>
+                    @auth
+                        <a href="{{ url('ideas/' . $idea->id) }}">View</a>
+                        @if (Auth::id() == $idea->user->id)
+                            <a href="{{ url('ideas/edit/' . $idea->id) }}">Edittt</a>
+                            <button type="submit" class="btn btn-danger btn-sm">X</button>
+                        @endif
+                    @endauth
                 </form>
             </div>
         </div>
@@ -41,15 +46,12 @@
             </p>
         @endif
         <div class="d-flex justify-content-between">
-            <div>
-                <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                    </span>{{ $idea->likes }}</a>
-            </div>
+            @include('ideas.shared.like-button')
             <div>
                 <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
                     {{ $idea->created_at }} </span>
             </div>
         </div>
-            @include('shared.comments-box')
+        @include('shared.comments-box')
     </div>
 </div>
