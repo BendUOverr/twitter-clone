@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\UserController;
@@ -45,6 +46,8 @@ Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->n
 Route::post('ideas/{id}/like',[IdeaLikeController::class, 'like'])->middleware('auth')->name('ideas.like');
 Route::post('ideas/{id}/unlike',[IdeaLikeController::class, 'unlike'])->middleware('auth')->name('ideas.unlike');
 
+Route::post('users/{id}/follow',[FollowerController::class, 'follow'])->middleware('auth')->name('users.follow');
+Route::post('users/{id}/unfollow',[FollowerController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
 
 Route::get('/terms', function (){
  return view('terms');

@@ -7,8 +7,7 @@
         <div class="col-6">
         <h1>Terms</h1>
         <div>
-            dsadasdasdasdasdasdsadsad d ads sadad adasd adada sdsad adasd
-            adssadsa
+
         </div>
     </div>
     @endsection

@@ -17,7 +17,7 @@
                     @auth
                         <a href="{{ url('ideas/' . $idea->id) }}">View</a>
                         @if (Auth::id() == $idea->user->id)
-                            <a href="{{ url('ideas/edit/' . $idea->id) }}">Edittt</a>
+                            <a href="{{ url('ideas/edit/' . $idea->id) }}">Edit</a>
                             <button type="submit" class="btn btn-danger btn-sm">X</button>
                         @endif
                     @endauth
