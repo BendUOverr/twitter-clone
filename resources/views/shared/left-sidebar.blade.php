@@ -6,8 +6,12 @@
                     <span>Home</span></a>
             </li>
             <li class="nav-item">
+                <a class="{{ (Route::is('feed')) ? 'text-white bg-primary rounded p-2' : ''}}" href="{{ route('feed') }}">
+                    <span>Feed</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="{{ (Route::is('terms')) ? 'text-white bg-primary rounded p-2' : ''}}" href="{{ route('terms') }}">
-                    <span>Terms</span></a>
+                    <span>Terms & Conditions</span></a>
             </li>
         </ul>
     </div>

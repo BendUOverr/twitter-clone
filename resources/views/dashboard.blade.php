@@ -19,7 +19,6 @@
            </div>
            <div class="col-3">
                @include('shared.search-bar')
-               @include('shared.follow-box')
 
            </div>
        </div>
